@@ -1,5 +1,5 @@
 #! /bin/bash
-movies=("arrays","rrr","devara")
+movies=("arrays" "rrr" "devara")
 
 echo "firstmovie:${movies[0]}"
 echo "secondmovie:${movies[1]}"
