@@ -2,6 +2,16 @@
 
 userid=$(id -u)
 
+validate()
+{
+    if [$1 -ne 0];
+    then
+    echo "$2:failure"
+    else
+    echo "$2:success"
+    fi
+}
+
 if [ $userid -ne 0 ]; then
  echo "error:you must have sudo access."
  exit 1
@@ -10,15 +20,10 @@ fi
  # echo "Error: You must have sudo access to execute this script."
   #exit 1
 #fi
-dnf list installed mysql > /dev/null 2>&1
+dnf list installed mysql
 if [$? -ne 0];then
   dnf install mysql -y
-   if[$? -ne 0];then
-      echo "mysql is installed:failure"
-      exit 1
-    else
-       echo "mysql us installed:success"
-    fi
+  validate $? "installing mysql"
 else
 echo "mysql is already installed"
 fi
