@@ -1,7 +1,7 @@
 #! /bin/bash
-user_id=$(id -u)
+userid=$(id -u)
 
-if[$user_id -ne 0]
+if[$userid -ne 0]
 then
 echo "error:you must have sudo access to execute"
 exit 1
