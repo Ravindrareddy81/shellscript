@@ -2,14 +2,14 @@
 
 userid=$(id -u)
 
-#if[ $userid -ne 0 ];then
-#echo "error:you must have sudo access"
-#exit 1
-#fi
-if [ $userid -ne 0 ]; then
-  echo "Error: You must have sudo access to execute this script."
-  exit 1
+if[ $userid -ne 0 ];then
+ echo "error:you must have sudo access"
+ exit 1
 fi
+#if [ $userid -ne 0 ]; then
+ # echo "Error: You must have sudo access to execute this script."
+  #exit 1
+#fi
 dnf list installed mysql > /dev/null 2>&1
 if [$? -ne 0];then
   dnf install mysql -y
