@@ -2,8 +2,8 @@
 
 userid=$(id -u)
 
-if[ $userid -ne 0 ];then
- echo "error:you must have sudo access"
+if [ $userid -ne 0 ]; then
+ echo "error:you must have sudo access."
  exit 1
 fi
 #if [ $userid -ne 0 ]; then
