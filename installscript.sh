@@ -1,8 +1,7 @@
 #!/bin/bash
 
 userid=$(id -u)
-if[$userid -ne 0];
-then
+if[$userid -ne 0];then
 echo "error:you must have sudo access"
 exit 1
 fi
