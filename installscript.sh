@@ -1,11 +1,12 @@
 #!/bin/bash
 
 userid=$(id -u)
-if[$userid -ne 0];then
+
+if[ $userid -ne 0 ];then
 echo "error:you must have sudo access"
 exit 1
 fi
-dnf list installed mysql
+dnf list installed mysql > /dev/null 2>&1
 if [$? -ne 0];then
   dnf install mysql -y
    if[$? -ne 0];then
