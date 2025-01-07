@@ -27,3 +27,10 @@ if [$? -ne 0];then
 else
 echo "mysql is already installed"
 fi
+dnf list installed git
+if [$? -ne 0];then
+  dnf install git -y
+  validate $? "installing git"
+else
+echo "git is already installed"
+fi
