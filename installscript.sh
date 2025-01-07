@@ -34,8 +34,8 @@ if [ $? -ne 0 ];then
 else
 echo -e "mysql is already ... $Y installed"
 fi
-dnf list installed git
-if [$? -ne 0];then
+dnf list installed git -y &>>$log_file
+if [ $? -ne 0 ];then
   dnf install git -y &>>$log_file
   validate $? "installing git"
 else
