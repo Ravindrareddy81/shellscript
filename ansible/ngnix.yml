@@ -9,12 +9,14 @@
         state: present
       notify: Restart Nginx  # This runs only if Nginx is newly installed
 
-    - name: Ensure Nginx is Running
-      ansible.builtin.systemd:
-        name: nginx
-        state: reloaded
-        enabled: yes
-        ignore_errors: yes
+    - name: Ensure Nginx is running
+  ansible.builtin.systemd:
+    name: nginx
+    state: restarted
+    enabled: yes
+  register: nginx_status
+  ignore_errors: yes  # ✅ Correct placement
+
 
   handlers:
     - name: Restart Nginx
