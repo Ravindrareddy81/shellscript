@@ -12,8 +12,8 @@
         dest: /etc/nginx/conf.d/load_balancer.conf
         content: |
           upstream backend_servers {
-              server <54.174.241.253>;
-              server <54.144.105.199>;
+              server <172.31.19.97>;
+              server <172.31.25.158>;
           }
 
           server {
