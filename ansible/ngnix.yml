@@ -1,7 +1,7 @@
--name : install and start ngnix
-  hosts:web
-  become:yes
-tasks:
+- name: install and start ngnix
+  hosts: web
+  become: yes
+  tasks:
     - name: Install apache package
       ansible.builtin.yum:
         name: nginx
