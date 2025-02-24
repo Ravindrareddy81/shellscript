@@ -12,7 +12,7 @@
     - name: Ensure Nginx is Running
       ansible.builtin.systemd:
         name: nginx
-        state: started
+        state: reloaded
         enabled: yes
 
   handlers:
