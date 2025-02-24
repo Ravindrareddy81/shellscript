@@ -1,13 +1,22 @@
-- name: install and start ngnix
+- name: Install and Configure Nginx
   hosts: web
   become: yes
+
   tasks:
-    - name: Install apache package
+    - name: Install Nginx
       ansible.builtin.yum:
         name: nginx
         state: present
-    - name: Start apache service
-      ansible.builtin.service:
+      notify: Restart Nginx  # This runs only if Nginx is newly installed
+
+    - name: Ensure Nginx is Running
+      ansible.builtin.systemd:
         name: nginx
         state: started
         enabled: yes
+
+  handlers:
+    - name: Restart Nginx
+      ansible.builtin.systemd:
+        name: nginx
+        state: restarted
