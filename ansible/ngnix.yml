@@ -1,33 +1,8 @@
-- name: Configure Nginx Load Balancer
+- name: Install nginx and start services
   hosts: web
   become: yes
   tasks:
-    - name: Install Nginx
-      ansible.builtin.yum:
+    - name: Install nginx
+      ansible.builtin.package:
         name: nginx
         state: present
-
-    - name: Configure Nginx Load Balancer
-      ansible.builtin.copy:
-        dest: /etc/nginx/conf.d/load_balancer.conf
-        content: |
-          upstream backend_servers {
-              server <172.31.19.97>;
-              server <172.31.25.158>;
-          }
-
-          server {
-              listen 80;
-              location / {
-                  proxy_pass http://backend_servers;
-              }
-          }
-        owner: root
-        group: root
-        mode: '0644'
-
-    - name: Restart Nginx
-      ansible.builtin.systemd:
-        name: nginx
-        state: restarted
-        enabled: yes
